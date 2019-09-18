@@ -1,11 +1,18 @@
 //set myName variable to your name;
-function myName(name) {
+function myName() {
+  let myName = 'Dan Lubbers';
+
+  return myName;
+}
+console.log(myName());
+
+// or did you want it like this?
+function myName1(name) {
   let myName = name;
 
   return myName;
 }
-console.log(myName('Dan Lubbers'));
-
+console.log(myName1('Dan Lubbers'));
 
 function setTeachersNames(teachersName) {
   // change code below this line so that we can set the variable.
@@ -213,7 +220,8 @@ console.log(testStrictNotEqual(12, "bob"));// should return "Not Equal"
  */
 
 function testLogicalAnd(num) {
-  
+  if(num >= 6 && num <= 9) return 'Yes';
+  return 'No';
 }
 
 console.log(testLogicalAnd(9)); // should return "Yes"
@@ -231,7 +239,8 @@ console.log(testLogicalAnd(5)); // should return "No"
  */
 
 function testLogicalOr(num) {
-
+  if(num === 20 || num === 25) return 'Yes';
+  return 'No'; 
 }
 
 console.log(testLogicalOr(0)); // should return No
