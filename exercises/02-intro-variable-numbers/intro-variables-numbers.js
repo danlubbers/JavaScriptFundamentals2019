@@ -357,7 +357,7 @@ function lowerCaseName(str) {
   if(str) return str.toLowerCase();
 }
 
-console.log(lowerCaseName('Hamburger'));
+console.log(lowerCaseName('Hamburgerss'));
 console.log(lowerCaseName());
 
 
