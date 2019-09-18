@@ -1,18 +1,10 @@
 //set myName variable to your name;
-function myName() {
-  let myName = 'Dan Lubbers';
-
-  return myName;
-}
-console.log(myName());
-
-// or did you want it like this?
-function myName1(name) {
+function myName(name) {
   let myName = name;
 
   return myName;
 }
-console.log(myName1('Dan Lubbers'));
+console.log(myName('Dan Lubbers'));
 
 function setTeachersNames(teachersName) {
   // change code below this line so that we can set the variable.
@@ -353,7 +345,7 @@ console.log(timesFive(5));
 
 // Write a function here
 function lowerCaseName(str) {
-  if(!str) return "Found Null or Undefined, please type in a string!";
+  if(!str) return null || undefined;
   if(str) return str.toLowerCase();
 }
 
