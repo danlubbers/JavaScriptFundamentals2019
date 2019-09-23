@@ -167,9 +167,9 @@ function compareEquality(a, b) {
   // Use 'strict' equals === vs ==
   if (a === b) {
     // Change this line
-    return 'Equal';
+    return "Equal";
   }
-  return 'Not Equal';
+  return "Not Equal";
 }
 
 /** The function should use the strict inequality operator
@@ -190,9 +190,9 @@ function testStrictNotEqual(a, b) {
   if (a !== b) {
     // Only Change Code Above this Line
 
-    return 'Not Equal';
+    return "Not Equal";
   }
-  return 'Equal';
+  return "Equal";
 }
 
 console.log(testStrictNotEqual(17, 17)); // should return "Equal"
