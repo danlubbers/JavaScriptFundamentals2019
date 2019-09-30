@@ -322,10 +322,14 @@ function caseInSwitch(num) {
  *
  */
 
- function timesFive(num) {
-  return num * 5;
+function timesFive(num) {
+  return num === undefined ? 5 : num * 5;
  }
 
+console.log(timesFive());
+console.log(timesFive(0));
+console.log(timesFive(1));
+console.log(timesFive(2));
 console.log(timesFive(3));
 console.log(timesFive(4));
 console.log(timesFive(5));
