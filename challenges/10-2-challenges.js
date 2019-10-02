@@ -12,7 +12,12 @@
  *
  *  */
 
-function createAnArray() {}
+function createAnArray() {
+  return ['string', () => 'I am a Function', [1, 2, 3]];
+}
+
+
+console.log(createAnArray());
 
 /***
  *   The function will accept two arguments: the string and the target.
@@ -32,7 +37,20 @@ function createAnArray() {}
  *
  *  */
 
-function uppercaseTargetWord(str, target) {}
+function uppercaseTargetWord(str, target) {
+  let splitWords = str.split(' ');
+  if (target > splitWords.length) return undefined;
+
+  let targetWordUpperCase = splitWords[target - 1].toUpperCase();  
+  let targetWord = splitWords[target - 1];
+
+  return str.replace(targetWord, targetWordUpperCase);
+}
+
+console.log(uppercaseTargetWord("first second third", 2));
+console.log(uppercaseTargetWord("Javascript is cool", 3));
+console.log(uppercaseTargetWord("Javascript is not cool", 5));
+
 
 module.exports = {
   createAnArray,
