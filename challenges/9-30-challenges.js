@@ -54,6 +54,11 @@ function confirmEnding(str, target) {
 
   // Easier way to get the answer
   // return str.endsWith(target);
+
+  // using regex $ means endsWith
+  // let regex = new RegExp(target + '$');
+  // return regex.test(str); 
+  
 }
 
 console.log(confirmEnding("Jamal", "l")); // true
