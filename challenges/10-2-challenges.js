@@ -39,12 +39,17 @@ console.log(createAnArray());
 
 function uppercaseTargetWord(str, target) {
   let splitWords = str.split(' ');
-  if (target > splitWords.length) return undefined;
+  // My Way
+  // if (target > splitWords.length) return undefined;
+  // let targetWordUpperCase = splitWords[target - 1].toUpperCase();  
+  // let targetWord = splitWords[target - 1];
+  // return str.replace(targetWord, targetWordUpperCase);
 
-  let targetWordUpperCase = splitWords[target - 1].toUpperCase();  
-  let targetWord = splitWords[target - 1];
-
-  return str.replace(targetWord, targetWordUpperCase);
+  // Better way 
+  if(splitWords.length >= target) {
+    splitWords[target - 1] = splitWords[target - 1].toUpperCase();
+    return splitWords.join(' ');
+  }
 }
 
 console.log(uppercaseTargetWord("first second third", 2));
