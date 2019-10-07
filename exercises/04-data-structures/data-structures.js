@@ -153,12 +153,15 @@ console.log(combineArray(['Japan','China','India'], ['USA','UK']));
  }];
 
 function findAndAbort(arr, id) {
+  let personID = {};
   for(const person of arr) { 
     console.log(person.id);
-    if(id === person.id) //break;
-    // console.log(person);
-    return person;
+    if(person.id === id){
+      personID = person;
+      break;
+    } 
   } 
+  return personID;
 }
 
 
