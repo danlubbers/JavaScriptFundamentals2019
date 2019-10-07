@@ -64,15 +64,18 @@ console.log(addFunctionsIntoArray()[1](10, 10));
  *
  **/
 function highestNumber(array) {
-  // return array.sort((a, b) => b - a)[0];
+  // Slice does not mutate the original array
+  return array.slice().sort((a, b) => b - a)[0];
+  // can also you spread operator to not mutate the original array
+  // return [...array].sort((a, b) => b - a)[0];
 
-  let maxNum = -10;
-  for(let i = 0; i < array.length; i++) {
-      if(array[i] > maxNum) {
-        maxNum = array[i];
-      }
-  }
-  return maxNum;
+  // let maxNum = -10;
+  // for(let i = 0; i < array.length; i++) {
+    //     if(array[i] > maxNum) {
+      //       maxNum = array[i];
+      //     }
+      // }
+      // return maxNum;
 }
 
 console.log(highestNumber([1, 10, 2, 3, 4]));
