@@ -19,7 +19,29 @@
  *  
  */
 
-function createGraduateObject(name, graduationYear, skills, links) {}
+
+function createGraduateObject(name, graduationYear, skills, links) {
+  
+   
+    console.log({skills})
+
+  return {
+    name, 
+    graduationYear,
+    skills: Object.values(skills), 
+    links: {
+    github:links[0],
+    linkedIn:links[1],
+    }
+  };
+}
+
+// const obj = createGraduateObject( "Jane Doe",
+// 2019,
+// { 1: "Javascript", 2: "HTML", 3: "CSS" },
+// ["https://github.com/example/profile", "https://linkedin.com/profile"]);
+// console.log(obj);
+
 
 /**
  * Loop through a nested array of people. For each person in the array,

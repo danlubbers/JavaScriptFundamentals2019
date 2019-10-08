@@ -15,14 +15,14 @@ describe.only("challenges/10-7-challenges/10-7-challenges.js", () => {
     const graduateObject = createGraduateObject(
       "Jane Doe",
       2019,
-      { 1: "Javascript", 2: "HTML", 3: "CSS" },
+      { 1: "JavaScript", 2: "HTML", 3: "CSS" },
       ["https://github.com/example/profile", "https://linkedin.com/profile"]
     );
 
     expect(graduateObject).to.eql({
       name: "Jane Doe",
       graduationYear: 2019,
-      skills: ["JavaScript", "React", "CSS"],
+      skills: ["JavaScript", "HTML", "CSS"],
       links: {
         github: "https://github.com/example/profile",
         linkedIn: "https://linkedin.com/profile"
