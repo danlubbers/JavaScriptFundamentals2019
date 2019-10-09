@@ -116,22 +116,12 @@ describe("Intro Variables And Numbers", () => {
     expect(isEvenOrOdd(3)).equal(false);
   });
 
-<<<<<<< HEAD
-  it('should return print out the correct value when given a certain argument', () => {
-    console.log(caseInSwitch(2))
-    expect(caseInSwitch(1)).to.equal('ONE');
-    // expect(caseInSwitch(5).to.equal('FIVE'));
-    // expect(caseInSwitch(7).to.equal('SEVEN'));
-    // expect(caseInSwitch(50).to.equal('PLEASE TRY AGAIN'));
-    // expect(caseInSwitch(-1).to.equal('PLEASE TRY AGAIN'));
-=======
   it("should return print out the correct value when given a certain argument", () => {
     expect(caseInSwitch(1)).to.equal("ONE");
     expect(caseInSwitch(5)).to.equal("FIVE");
     expect(caseInSwitch(7)).to.equal("SEVEN");
     expect(caseInSwitch(50)).to.equal("PLEASE TRY AGAIN");
     expect(caseInSwitch(-1)).to.equal("PLEASE TRY AGAIN");
->>>>>>> 150d24406d60697baef7d01eacb5a1574fee5656
   });
 
   it("should multiply the argument by 5", () => {

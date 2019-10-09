@@ -19,29 +19,17 @@
  *  
  */
 
-
 function createGraduateObject(name, graduationYear, skills, links) {
-  
-   
-    console.log({skills})
-
   return {
     name, 
     graduationYear,
     skills: Object.values(skills), 
     links: {
-    github:links[0],
-    linkedIn:links[1],
+      github:links[0],
+      linkedIn:links[1],
     }
   };
 }
-
-// const obj = createGraduateObject( "Jane Doe",
-// 2019,
-// { 1: "Javascript", 2: "HTML", 3: "CSS" },
-// ["https://github.com/example/profile", "https://linkedin.com/profile"]);
-// console.log(obj);
-
 
 /**
  * Loop through a nested array of people. For each person in the array,
@@ -67,7 +55,89 @@ function createGraduateObject(name, graduationYear, skills, links) {
  * It should look something like this:
  * @see /challenges/10-7-challenges/people-example.png
  */
-function createCsvString(people) {}
+
+let people = [
+  {
+    "name": "Georgia Wagner",
+    "gender": "female",
+    "location": "Skookumchuck, VA",
+    "dob": "1977-02-26"
+  },
+  {
+    "name": "Meredith Holt",
+    "gender": "female",
+    "location": "Coltman, WV",
+    "dob": "1957-09-22"
+  },
+  {
+    "name": "Cora Bradley",
+    "gender": "female",
+    "location": "Fairland, GA",
+    "dob": "1995-07-19"
+  },
+  {
+    "name": "Carol Scott",
+    "gender": "female",
+    "location": "Two Brooks, WI",
+    "dob": "1973-08-17"
+  },
+  {
+    "name": "Vincent Silva",
+    "gender": "male",
+    "location": "Brookhaven, DC",
+    "dob": "1959-07-30"
+  },
+  {
+    "name": "Clifton Armstrong",
+    "gender": "male",
+    "location": "Cimarron, WA",
+    "dob": "1971-10-08"
+  },
+  {
+    "name": "Deanna Stanley",
+    "gender": "female",
+    "location": "Morgan Mill, OK",
+    "dob": "1971-04-20"
+  },
+  {
+    "name": "Sidney Walker",
+    "gender": "male",
+    "location": "Scottsville, KS",
+    "dob": "1987-01-05"
+  },
+  {
+    "name": "Guillermo Gross",
+    "gender": "male",
+    "location": "Del Rey Oaks, RI",
+    "dob": "1998-05-31"
+  },
+  {
+    "name": "Daniel Steele",
+    "gender": "male",
+    "location": "Martins Corner, TX",
+    "dob": "1963-07-09"
+  },
+  {
+    "name": "Brett Jimenez",
+    "gender": "male",
+    "location": "East Waterford, ME",
+    "dob": "1958-05-06"
+  }
+];
+
+function createCsvString(people) {
+  let headerTitles = `"Name","Gender","Location","DOB"\n`;
+  let valuesStr = '';
+  
+  for(let i = 0; i < people.length; i++) {
+    // console.log(people[i].name);
+    valuesStr += `"${people[i]['name']}","${people[i]['gender']}","${people[i]['location']}","${people[i]['dob']}"\n`; 
+  }
+  return headerTitles + valuesStr;
+}
+
+console.log(createCsvString(people));
+
 
 module.exports = {
   createGraduateObject,
