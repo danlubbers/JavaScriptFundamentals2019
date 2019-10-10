@@ -126,18 +126,42 @@ let people = [
 ];
 
 function createCsvString(people) {
-  let headerTitles = `"Name","Gender","Location","DOB"\n`;
+  // First way hard coding the header titles
+  // let headerTitles = `"Name","Gender","Location","DOB"\n`;
+  
+  // More of a challenge - Getting the headertitles from the Object and looping over them to uppercase the first letter of each title unless the title is dob, then uppercasing all since dob is an abbreviation
+
+  // Object.keys(people[0] gives me just the header titles)
+  let headerTitles = Object.keys(people[0]);
+  let capitalizeHeaderTitles = ``;
+
+
+  for(let i = 0; i < headerTitles.length; i++) {
+    // If headerTitles[i] does not equal 'dob' 
+    if(headerTitles[i] !== 'dob') {
+      // slice off the first character and uppercase it, then add the uppercase character to the word with the first character sliced off and add to capitalizeHeaderTitles variable
+      capitalizeHeaderTitles += `"${headerTitles[i].slice(0, 1).toUpperCase()}${headerTitles[i].slice(1)}",`;
+    }
+    // If headerTitles[i] does equal 'dob' 
+    if(headerTitles[i] === 'dob') {
+      // Uppercase all characters and add to capitalizeHeaderTitles variable
+      capitalizeHeaderTitles += `"${headerTitles[i].toUpperCase()}"`;
+    }
+  }
+
   let valuesStr = '';
   
   for(let i = 0; i < people.length; i++) {
     // console.log(people[i].name);
+    // Loop over each value selecting the key and add to variable valuesStr but add \n at the end for a new line
     valuesStr += `"${people[i]['name']}","${people[i]['gender']}","${people[i]['location']}","${people[i]['dob']}"\n`; 
   }
-  return headerTitles + valuesStr;
+
+  // return capitalizeHeaderTitles and add new line at the end, then valuesStr
+  return `${capitalizeHeaderTitles}\n${valuesStr}`;
 }
 
-console.log(createCsvString(people));
-
+// console.log(createCsvString(people));
 
 module.exports = {
   createGraduateObject,
