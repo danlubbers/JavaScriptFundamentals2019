@@ -16,7 +16,25 @@
  *
  * user.email = "icanhascheeseburger@yahoo.com"; // This should not change newUser
  */
-const changeEmail = (user, newEmail) => {};
+
+
+const changeEmail = (user, newEmail) => {
+  // Spread Operator 'shallow copies' the object and adds new email without changing the original object
+  return {...user, email: newEmail};
+};
+
+const user = {
+  id: 1234,
+  username: "lolcatz1",
+  email: "lolcatz1@gmail.com"
+};
+
+const newUser = changeEmail(user, "purrfect@gmail.com");
+
+console.log(newUser); // Email did change
+console.log(user.email); // Did not change
+
+
 
 /**
  * Add a new item to a shopping cart. You should deep copy any array and objects.
@@ -37,7 +55,39 @@ const changeEmail = (user, newEmail) => {};
  * shoppingCart[0].price = 9000000; // This should not change newShoppingCart
  * newItem.price = 10; // This should not change newItem
  */
-const addToCart = (shoppingCart, newItem) => {};
+
+var _ = require('lodash');
+const addToCart = (shoppingCart, newItem) => {
+  // This sets up the deep copy for shopping cart
+  // let deepCopyShoppingCart = JSON.parse(JSON.stringify(shoppingCart));
+  // console.log(deepCopyShoppingCart);
+
+  // Using Lodashes cloneDeep method instead of the hacky JSON.parse way...
+  let deepCopyShoppingCart = _.cloneDeep(shoppingCart);
+
+  // This sets up a shallow copy for newItem
+  let shallowNewItem = {...newItem};
+  // console.log(shallowNewItem);
+  
+  // Combines the two into a new constant variable
+  const deepCopyShoppingCartNewItem = [...deepCopyShoppingCart, shallowNewItem];
+  // console.log(deepCopyShoppingCart);
+
+  // Changes price in shopping cart, but does not change in deepCopyShoppingCart
+  shoppingCart[0].price = 9000000;
+  // This does not change the newItem price
+  newItem.price = 10;
+
+  return deepCopyShoppingCartNewItem;
+};
+
+const shoppingCart = [{ name: "TV - 20ft", price: 1000000 }];
+const newItem = { name: "Popcorn", price: 5 };
+const newShoppingCart = addToCart(shoppingCart, newItem);
+
+console.log(shoppingCart);
+console.log(newShoppingCart);
+
 
 module.exports = {
   changeEmail,
