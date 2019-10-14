@@ -6,14 +6,17 @@
 function createAnArray() {
   let array = ["JavaScript"]; // Do not change this line
   /* Add three more items to the array here */
-  array.push('html');
-  array.push('css');
-  array.push('git');
+
+  // Method 1
+  array.push("Python");
+  array.push("Java");
+  array.push("PHP");
+
+  // Method 2
+  array = [...array, "Python", "Java", "PHP"];
+
   return array;
 }
-
-console.log(createAnArray());
-
 
 /**
  *  Return BMW by accessing a property from the array of cars
@@ -23,12 +26,8 @@ console.log(createAnArray());
 
 function accessingAnArray() {
   const cars = ["BMW", "Honda", "Civic"]; // Do not change this line
-  // Code here
   return cars[0];
 }
-
-console.log(accessingAnArray());
-
 
 /***
  * Create an array that contain two functions:
@@ -42,17 +41,9 @@ console.log(accessingAnArray());
  */
 
 function addFunctionsIntoArray() {
-  // Create and return an array here
-  let arr = [
-    function add(a, b) { return a + b; }, 
-    function subtract(a, b) { return a - b; }
-    ];
-    return arr;
+  let funcArray = [(num1, num2) => num1 + num2, (num1, num2) => num1 - num2];
+  return funcArray;
 }
-console.log(addFunctionsIntoArray()[0](10, 10));
-console.log(addFunctionsIntoArray()[1](10, 10));
-
-
 
 /**
  * Loop through the array using a for loop (or for ... of loop) and return the highest number
@@ -64,23 +55,12 @@ console.log(addFunctionsIntoArray()[1](10, 10));
  *
  **/
 function highestNumber(array) {
-  // Slice does not mutate the original array
-  return array.slice().sort((a, b) => b - a)[0];
-  // can also you spread operator to not mutate the original array
-  // return [...array].sort((a, b) => b - a)[0];
-
-  // let maxNum = -10;
-  // for(let i = 0; i < array.length; i++) {
-    //     if(array[i] > maxNum) {
-      //       maxNum = array[i];
-      //     }
-      // }
-      // return maxNum;
+  let highest;
+  for (let num of array) {
+    if (num > highest || highest === undefined) highest = num;
+  }
+  return highest;
 }
-
-console.log(highestNumber([1, 10, 2, 3, 4]));
-console.log(highestNumber([-1, -5, -4]));
-
 
 /**
  * Combine an array by using the spread operator
@@ -94,9 +74,6 @@ console.log(highestNumber([-1, -5, -4]));
 function combineArray(array1, array2) {
   return [...array1, ...array2];
 }
-
-console.log(combineArray(['Japan','China','India'], ['USA','UK']));
-
 
 /**
  * Given an array of objects, where each object has an ID,
@@ -131,42 +108,19 @@ console.log(combineArray(['Japan','China','India'], ['USA','UK']));
  * }];
  * findAndAbort(people, 20); // { id: 20, firstName: 'Cookie', lastName: 'Monster' }
  *
-//  * // Please note, the loop never iterates over the last item, because we found our object. There is no need to continue looping.
+ * // Please note, the loop never iterates over the last item, because we found our object. There is no need to continue looping.
  */
 
- const people = [{
-     id: 10,
-    firstName: 'John',
-    lastName: 'Smith'
- },{
-    id: 20,
-    firstName: 'Cookie',
-    lastName: 'Monster'
- },{
-    id: 30,
-    firstName: 'Jane',
-    lastName: 'Doe'
- },{
-    id: 40,
-    firstName: 'Tom',
-    lastName: 'Hardy'
- }];
-
 function findAndAbort(arr, id) {
-  let personID = {};
-  for(const person of arr) { 
-    console.log(person.id);
-    if(person.id === id){
-      personID = person;
+  let match;
+  for (let person of arr) {
+    if (person.id === id) {
+      match = person;
       break;
-    } 
-  } 
-  return personID;
+    }
+  }
+  return match;
 }
-
-
-console.log(findAndAbort(people, 20)); // { id: 20, firstName: 'Cookie', lastName: 'Monster' }
-
 
 /**
  * A palindrome is a word, phrase, or sequence that reads the same backward as forward, e.g., madam or racecar.
@@ -178,29 +132,55 @@ console.log(findAndAbort(people, 20)); // { id: 20, firstName: 'Cookie', lastNam
  */
 
 function isPalindrome(str) {
-  let reversed = str.split('').reverse().join('');
-  return str === reversed;
+  // Method 1
+  let letters = str.split("");
+  let reverse = "";
+  for (let i = letters.length - 1; i >= 0; i--) {
+    const letter = letters[i];
+    reverse += letter;
+  }
+  return reverse === str;
+
+  // Method 2
+  const reverse = str
+    .split("")
+    .reverse()
+    .join("");
+  return reverse === str;
 }
-
-console.log(isPalindrome('racecar'));
-console.log(isPalindrome('eye'));
-console.log(isPalindrome('nope'));
-
 
 /***
  * Use sets to remove duplicate elements from an array
  * @return {array}
  */
 
-function removeDuplicates() {
-  let numbers = [2, 3, 4, 4, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 32, 3, 4, 5]; // You can change this line
-  let myNumSet = new Set(numbers);
+function removeDuplicates(numbers) {
+  // let numbers = [2, 3, 4, 4, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 32, 3, 4, 5]; // You can change this line
+
   /** Return the an array of unique values */
-  return [...myNumSet];
+  const mySet = new Set([
+    2,
+    3,
+    4,
+    4,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    5,
+    32,
+    3,
+    4,
+    5
+  ]);
+  return [...mySet];
 }
-
-console.log(removeDuplicates());
-
 
 /**
  * Return the value for hat inside clothes (which should be ball cap)
@@ -217,9 +197,6 @@ function accessObject() {
   return clothes.hat;
 }
 
-console.log(accessObject());
-
-
 /**
  *   Update the object to contain your first and last name.
  *   Add at least three skills inside the array
@@ -234,14 +211,11 @@ function createStudentObject() {
     skills: []
   };
   // Add code here
-  student.firstName = 'Dan';
-  student.lastName = 'Lubbers';
-  student.skills = ['photographer', 'retoucher', 'web developer'];
+  student.firstName = "Stacy";
+  student.lastName = "Bresette";
+  student.skills = ["Python", "Teaching", "Being a permanent student"];
   return student;
 }
-
-console.log(createStudentObject());
-
 
 /**
  * Make an object "myDog" that represents a dog. It should contain the properties
@@ -251,17 +225,13 @@ console.log(createStudentObject());
  */
 
 function createDogObject() {
-  const myDog = {
-    name: 'Loki',
-    legs: 4,
-    tails: true,
-    owners: ["Dan", "Sunny"]
+  return {
+    name: "Sparky",
+    legs: 8,
+    tails: 2,
+    owners: ["Tim Burton"]
   };
-  return myDog;
 }
-
-console.log(createDogObject());
-
 
 /**
  *  Using Object.keys, return all the properties contained in the object.
@@ -283,9 +253,6 @@ function returnObjectProperties() {
   return Object.keys(dog);
 }
 
-console.log(returnObjectProperties());
-
-
 /**
  * Combine two objects into one
  * @param  {object} obj1
@@ -294,29 +261,13 @@ console.log(returnObjectProperties());
  */
 
 function combineObject(obj1, obj2) {
-  return {... obj1, ...obj2};
+  return { ...obj1, ...obj2 };
 }
-
-console.log(combineObject({
-  firstName: "Clark"
-}, {
-  lastName: "Kent"
-}));
-
 
 /**
  * Find a record with the matching id in a collection of records.
  * If the value is truthy, then swap out one of the records values with a new property.
  * If the original value is an array, it should add the new value to the array.
- *
- *  If prop is "tracks" but the album doesn't have a "tracks" property,
- *  create an empty array before adding the new value to the album's corresponding property
- *
- *  If prop is "tracks" and value isn't empty (""), push the value
- *  onto the end of the album's existing tracks array
- *
- *  If value is empty (""), delete the given prop property from the album.
- *
  * @param {Number} id what record to change
  * @param {String} property what property to replace
  * @param {String} value new value to replace with
@@ -324,7 +275,7 @@ console.log(combineObject({
  *  @example
  *  updateRecords(5439, "artist", "ABBA"); // artist should be "ABBA"
  *  updateRecords(5439, "tracks", "Take a Chance on Me"); // tracks should be ["Old Track", "Take a Chance on Me""]
- *  updateRecords(2548, "artist", ""); // artist should not be set
+ *  updateRecords(2548, "artist", ""); // artist should not change
  *  updateRecords(1245, "tracks", "Addicted to Love"); // tracks should be ["Old Track", "Addicted to Love""]
  *  updateRecords(2468, "tracks", "Free"); // tracks should have "1999"as the first element.
  *  updateRecords(2548, "tracks", ""); // tracks should not change
@@ -333,7 +284,7 @@ console.log(combineObject({
  *
  */
 
-function updateRecords(id, prop, value) {
+function updateRecords(id, property, value) {
   // Do not change collection here
 
   let collection = {
@@ -361,29 +312,13 @@ function updateRecords(id, prop, value) {
   };
   // Only change the code after this line
   // Logic Here
-  if(prop !== '' && value === '') {
-    delete collection[id][prop];
-  } else if(prop !== 'tracks') {
-    collection[id][prop] = value;
-  } else if(prop === 'tracks') {
-    if(collection[id][prop]) {
-      collection[id][prop].push(value);
-    } else {
-      let arr = [];
-      arr.push(value);
-      collection[id][prop] = arr;
-    }
+  if (value) {
+    if (property === "tracks") collection[id][property] = [...tracks, value];
+    else collection[id][property] = value;
   }
-  return collection;
-}
 
-console.log(updateRecords(5439, "artist", "ABBA")); // artist should be "ABBA"
-console.log(updateRecords(5439, "tracks", "Take a Chance on Me")); // tracks should be ["Old Track", "Take a Chance on Me""]
-console.log(updateRecords(2548, "artist", "")); // artist should not change
-console.log(updateRecords(1245, "tracks", "Addicted to Love")); // tracks should be ["Old Track", "Addicted to Love""]
-console.log(updateRecords(2468, "tracks", "Free")); // tracks should have "1999"as the first element.
-console.log(updateRecords(2548, "tracks", "")); // tracks should not change
-console.log(updateRecords(1245, "album", "Riptide")); // album should be "Riptide"
+  return collection; //You do not need to change this line.
+}
 
 module.exports = {
   createAnArray,
