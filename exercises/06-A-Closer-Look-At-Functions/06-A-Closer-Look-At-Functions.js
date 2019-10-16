@@ -7,7 +7,12 @@
  *
  */
 
-function objectMaker() {}
+function objectMaker(name) {
+  return { name: name };
+}
+
+console.log(objectMaker('Dan Lubbers'));
+
 
 /**
  *  As a programmer, I would like to be able to call on a function that returns an object that will allow me to
@@ -38,8 +43,33 @@ function objectMaker() {}
 function groceryList() {
   let groceryItems = [];
 
-  return {};
+  return {
+
+    add: (item) => {
+      groceryItems.push(item);
+    },
+
+    remove: (num) => {
+      groceryItems.splice(num);
+    },
+
+    getList: () => {
+      return groceryItems;
+    }
+  };
 }
+
+let items = groceryList();
+items.add('ginger');
+items.add('turmeric');
+items.add('garlic');
+
+items.remove(1);
+
+let list = items.getList();
+console.log(list);
+
+
 
 /**
  *  slides
@@ -56,6 +86,7 @@ const calculator = () => {
    * @var {number}
    */
   /**
+   * 
    * Return an object that has two methods:
    *
    * 1. The first is a "setter" function that a.) accepts a parameter of type number and
@@ -66,6 +97,17 @@ const calculator = () => {
    * that should return the value of "sum" above.
    * @returns {number} the value of sum
    */
+    let sum = 0;
+
+    return {
+      setter: (num) => {
+        sum += num;
+      },
+
+      getter: () => {
+        return sum;
+      }
+    };
 };
 
 /**
@@ -93,7 +135,46 @@ const calculator = () => {
  * guessRound2(1); // "No more guesses. The answer was 0"
  */
 
-const guessingGame = numberOfRounds => {};
+const guessingGame = numberOfRounds => {
+  console.log(numberOfRounds);
+  
+  let answer = Math.floor(Math.random() * 11), 
+      guesses = 0;
+      
+      console.log(answer);
+      console.log(guesses);
+
+  return (guess) => {
+    console.log(guesses);
+    
+    for(let i = 0; i < numberOfRounds; i++) {
+      console.log(guesses);
+      if(guesses >= numberOfRounds) return `No more guesses. The answer was ${answer}`;
+      if(guess === answer) return "You got it!";
+       
+      if(guess > answer) {
+        guesses++;
+        return "You're too high!";
+      } else if(guess < answer) {
+        guesses++;
+        return "You're too low!";
+      } 
+    }
+  };
+};
+
+// let guessRound1 = guessingGame(5);
+// console.log(guessRound1(1)); // "You're too low!"
+// console.log(guessRound1(8)); // "You're too high!"
+// console.log(guessRound1(5)); // "You're too low!"
+// console.log(guessRound1(7)); // "You got it!"
+
+let guessRound2 = guessingGame(3);
+console.log(guessRound2(5)); // "You're too low!"
+console.log(guessRound2(3)); // "You're too low!"
+console.log(guessRound2(1)); // "No more guesses. The answer was 0"
+console.log(guessRound2(7)); // "No more guesses. The answer was 0"
+
 
 /** CLOSURES END */
 
@@ -116,7 +197,20 @@ const guessingGame = numberOfRounds => {};
  * @param {number} a
  * @param {number} b
  */
-const multiplier = (a, b) => {};
+const multiplier = (a, b) => {
+  if(b === undefined) {
+    return (b) => {
+      return a * b;
+    };
+  }
+    return a * b;
+};
+
+
+console.log(multiplier(3,4)); // 12;
+console.log(multiplier(3)(4)); // 12
+console.log(multiplier(3)); //function(){};
+
 
 /** Currying End */
 
@@ -133,7 +227,12 @@ const multiplier = (a, b) => {};
  *  - Eddy
  * @param {string} name instuctor name
  */
-const printer = () => {};
+
+// My Way
+const printer = name => `-${name}`;
+
+// Classway
+// const printer = name => console.log(`- ${name}\n`);
 
 /**
  * Loops through the array of strings
@@ -141,9 +240,15 @@ const printer = () => {};
  * @param {array}
  * @param {function} callback printer function
  */
-const printNames = () => {};
+const printNames = (names, cb) => {
+  names.forEach((name)=> cb(name)); 
+  return names;
+};
 
-/*** callback ends */
+console.log(printNames(['Sunny','Dan','Que'], printer));
+
+
+/*** callback ends */ 
 
 /*** Higher Order Functions Starts */
 
@@ -154,7 +259,9 @@ const printNames = () => {};
  * @param {function} callback
  * @returns {array} new array
  */
-const map = (arr, callback) => {};
+const map = (arr, callback) => {
+  
+};
 
 /**
  * Multiplies each value in an array by two

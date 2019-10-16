@@ -7,7 +7,13 @@
  * @example removeElement(['one','two','three']) // ['two', 'three']
  */
 
-function removeElement(arr) {}
+function removeElement(arr) {
+  const [, ...rest] = arr;
+  return rest;
+}
+
+console.log(removeElement([1, 2, 3, 4]));
+
 
 /**
  * truncate a string
@@ -30,7 +36,17 @@ function removeElement(arr) {}
  *
  */
 
-function truncateString(str, num) {}
+function truncateString(str, num) {
+  // My Answer
+  return str.length > num ?  `${str.slice(0, num)}...`: str;
+
+  // can use
+  // return str.length > num ? `${str.substring(0, num)}...`: str;
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8), "A-tisket...");
+
+console.log(truncateString("Peter Piper picked a peck of pickled peppers", 11), "Peter Piper...");
 
 module.exports = {
   removeElement,
