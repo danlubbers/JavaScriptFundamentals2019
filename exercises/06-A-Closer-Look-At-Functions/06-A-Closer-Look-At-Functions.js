@@ -240,10 +240,7 @@ const printer = name => `-${name}`;
  * @param {array}
  * @param {function} callback printer function
  */
-const printNames = (names, cb) => {
-  names.forEach((name)=> cb(name)); 
-  return names;
-};
+const printNames = (names, cb) => names.map(name=> cb(name));
 
 console.log(printNames(['Sunny','Dan','Que'], printer));
 
@@ -260,7 +257,11 @@ console.log(printNames(['Sunny','Dan','Que'], printer));
  * @param {array} arr
  * @param {function} callback
  */
-const forEach = (arr, callback) => {};
+const forEach = (arr, callback) => {
+  for(let i = 0; i < arr.length; i++) {
+    callback(arr[i], i, arr);
+  }
+};
 
 /**
  * Given an array of strings, remove all letters of each value except the first and last character in the strings
@@ -270,7 +271,20 @@ const forEach = (arr, callback) => {};
  *   showFirstAndLast(['colt','matt', 'tim', 'udemy']); // ["ct", "mt", "tm", "uy"]
  *   showFirstAndLast(['hi', 'goodbye', 'smile']) // ['hi', 'ge', 'se']
  */
-const showFirstAndLast = arr => {};
+const showFirstAndLast = arr => {
+  let newArr = [];
+
+  arr.forEach(e => {
+    let split = e.split('');
+    newArr.push(split[0] + split[split.length - 1]);
+  });
+  
+  return newArr;
+};
+
+console.log(showFirstAndLast(['colt','matt', 'tim', 'udemy']));
+console.log(showFirstAndLast(['hi', 'goodbye', 'smile']));
+
 
 /***ForEach ends */
 
@@ -282,7 +296,13 @@ const showFirstAndLast = arr => {};
  * @returns {array} new array
  */
 const map = (arr, callback) => {
-  
+  let newArr = [];
+
+  for(let i = 0; i < arr.length; i++) {
+    newArr.push(callback(arr[i], i, arr));
+  }
+
+  return newArr;
 };
 
 /**
@@ -290,7 +310,7 @@ const map = (arr, callback) => {
  * @param {array} arr an array of numbers e.g. [1, 3, 5]
  * @returns {array} new array, with each value doubled e.g. [2, 5, 10]
  */
-const doubleValues = arr => {};
+const doubleValues = arr => arr.map(e => e * 2);
 
 /**
  * Given an array nested with objects
