@@ -1,5 +1,5 @@
 /***
- *
+ *  a test
  *  Create a function that  returns an object.
  *  The object will be a simple object with just the key being name and the value being the students name
  *   objectMaker() // {'name':'matina'}
