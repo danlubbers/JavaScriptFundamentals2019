@@ -275,8 +275,7 @@ const showFirstAndLast = arr => {
   let newArr = [];
 
   arr.forEach(e => {
-    let split = e.split('');
-    newArr.push(split[0] + split[split.length - 1]);
+    newArr.push(e[0] + e[e.length - 1]);
   });
   
   return newArr;
@@ -330,7 +329,20 @@ const doubleValues = arr => arr.map(e => e * 2);
  * ];
  * extractKey(arrayOfNames, 'name'); // ['Ellie', 'Tim', 'Matt', 'Colt']
  */
-const extractKey = (arr, key) => {};
+const extractKey = (arr, key) => {
+  return Object.values(arr).map(e => {
+    return e.name;
+  });
+};
+
+const arrayOfNames = [
+    {name: 'Ellie', age: 20},
+    {name: 'Tim', age: 35},
+    {name: 'Matt', age: 18},
+    {name: 'Colt', age: 47}
+  ];
+
+console.log(extractKey(arrayOfNames));
 
 /**
  * Build your own filter function
@@ -339,7 +351,16 @@ const extractKey = (arr, key) => {};
  * @param {function} callback
  * @returns {mixed} a array of values with the values with some of the values removed
  */
-const filter = (arr, callback) => {};
+const filter = (arr, callback) => {
+  let newArr = [];
+
+  for(let i = 0; i < arr.length; i++) {
+    if(callback(arr[i], i, arr)) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+};
 
 /**
  * Delete the matching user from an array of user objects
@@ -360,7 +381,9 @@ const filter = (arr, callback) => {};
  * findUser(users, 1025);
  * // [{ id: 1024, username:"smile134", email: "smile134@example.com" }]
  */
-const deleteUser = (arr, id) => {};
+const deleteUser = (arr, id) => {
+  return arr.filter(e => e.id !== id);
+};
 
 /**
  * Build your own find function
@@ -369,8 +392,41 @@ const deleteUser = (arr, id) => {};
  * @param {function} callback
  * @returns {mixed} a single value in the array
  */
-const find = (arr, callback) => {};
+const find = (arr, callback) => {
+  let value = '';
 
+  for(let i = 0; i < arr.length; i++) {
+    if(callback(arr[i], i , arr)) {
+      value = arr[i];
+    }
+  }
+  return value;
+
+};
+
+const users1 = [
+  {
+    id: 1024,
+    username: "smile134",
+    email: "smile134@example.com"
+  },
+  {
+    id: 1025,
+    username: "newyorkfarmer",
+    email: "johndoe@example.com"
+  },
+  {
+    id: 1026,
+    username: "redsocksfan#1",
+    email: "massusa@example.com"
+  }
+];
+
+const cb = (value, idx, arr) => {
+  return value;
+}
+
+console.log(find(users1, cb));
 /**
  * Find and return the matching user in an array of user objects
  * @param {array} arr array of objects, where each object represents a user
@@ -390,7 +446,28 @@ const find = (arr, callback) => {};
  * findUser(users, 1025);
  * // { id: 1025, username:"newyorkfarmer", email: "johndoe@example.com" }
  */
-const findUser = (arr, id) => {};
+const findUser = (arr, id) => arr.find(e => e.id === id);
+
+const users = [
+  {
+    id: 1024,
+    username: "smile134",
+    email: "smile134@example.com"
+  },
+  {
+    id: 1025,
+    username: "newyorkfarmer",
+    email: "johndoe@example.com"
+  },
+  {
+    id: 1026,
+    username: "redsocksfan#1",
+    email: "massusa@example.com"
+  }
+];
+
+console.log(findUser(users, 1025));
+
 
 /**
  * Given an array of numbers, return the sum
@@ -400,14 +477,24 @@ const findUser = (arr, id) => {};
  *  addItems([1,5,6]) // 12
  *  addItems([1,-2,-3]) // -4
  */
-const addItems = arr => {};
+const addItems = arr => arr.reduce((acc, curr) => acc + curr, 0);
+console.log(addItems([1, 5, 6]));
+console.log(addItems([1,-2,-3]));
+
 
 /**
  * Create a function that flattens an array (that is, it should "unnest" a nested array).
  * @param {array} array e.g. `[[1, 3], [5, 10]]`
  * @returns {array} new, flattened array e.g. `[1, 3, 5, 10]`
  */
-const flattenArray = array => {};
+const flattenArray = array => {
+  return array.reduce((acc, curr) => {
+    return [...acc, ...curr];
+  }, []);
+};
+
+console.log(flattenArray([[1, 3], [5, 10]]));
+
 
 /**
  * Create a function that tallies the number of each kind of "thing" within the array
@@ -417,7 +504,19 @@ const flattenArray = array => {};
  *   let fruits = ['Apple', 'Orange', 'Apple', 'Blueberry', 'Grape', 'Grape'];
  *   generateTally(generateTally); // {Apple: 2, Orange: 1, Blueberry: 1, Grape: 2}
  */
-const generateTally = array => {};
+
+let fruits = ['Apple', 'Orange', 'Apple', 'Blueberry', 'Grape', 'Grape'];
+const generateTally = array => {
+  return array.reduce((acc, curr) => {
+    // acc[curr] = (acc[curr] || 0) + 1;
+    if(!acc[curr]) acc[curr] = 1;
+    else acc[curr] = acc[curr] + 1;
+    return acc;
+  }, {});
+};
+
+console.log(generateTally(fruits));
+
 
 /**
  * Create a function, that when given an array of object literals, will index the object literals by a single column
