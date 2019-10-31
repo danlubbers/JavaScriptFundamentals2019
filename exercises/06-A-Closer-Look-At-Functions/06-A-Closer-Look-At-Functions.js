@@ -393,15 +393,12 @@ const deleteUser = (arr, id) => {
  * @returns {mixed} a single value in the array
  */
 const find = (arr, callback) => {
-  let value = '';
-
   for(let i = 0; i < arr.length; i++) {
     if(callback(arr[i], i , arr)) {
-      value = arr[i];
+      // Use return so that it 'ONLY' finds the first occurance and breaks out of the loop
+      return arr[i];
     }
   }
-  return value;
-
 };
 
 const users1 = [
@@ -510,7 +507,7 @@ const generateTally = array => {
   return array.reduce((acc, curr) => {
     // acc[curr] = (acc[curr] || 0) + 1;
     if(!acc[curr]) acc[curr] = 1;
-    else acc[curr] = acc[curr] + 1;
+    else acc[curr]++;
     return acc;
   }, {});
 };
@@ -540,7 +537,30 @@ console.log(generateTally(fruits));
  *   456: {id, 456, name: 'Rachel', age: 35}
  * }
  */
-const arrayToObject = arr => {};
+const arrayToObject = arr => {
+  return arr.reduce((acc, val) => {
+    acc[val.id] = val;
+    return acc;
+  }, {});
+};
+
+
+const peopleArray = [
+  { id: 123, name: "dave", age: 23 },
+  { id: 456, name: "chris", age: 23 },
+  { id: 789, name: "bob", age: 23 },
+  { id: 101, name: "tom", age: 23 },
+  { id: 102, name: "tim", age: 23 }
+];
+
+console.log(arrayToObject(peopleArray));
+
+// Same as acc[val.id] in the reduce
+let peopleObj = {};
+peopleObj[456] = peopleArray[1];
+console.log(peopleObj);
+
+
 
 module.exports = {
   objectMaker,
