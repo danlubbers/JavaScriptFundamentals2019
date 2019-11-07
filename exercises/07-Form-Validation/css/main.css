@@ -291,6 +291,11 @@ input[type="date" i] {
 /* ==========================================================================
    #FORM
    ========================================================================== */
+
+.hiddenForm {
+  display: none;
+}
+
 input {
   outline: none;
   margin: 0;
@@ -496,4 +501,8 @@ input {
     padding-top: 40px;
     padding-bottom: 40px;
   }
+}
+
+.completed-form {
+  display: none;
 }

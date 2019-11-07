@@ -75,6 +75,7 @@ function formValidation() {
   // });
   // console.log(document.form.name.value);
 
+  let infoArray = [];
 
   // If there is no value, then add class error to the input, which shows a red border box to indicate the field 'must' be filled out before submission will be accepted 
   // NAME
@@ -109,4 +110,28 @@ function formValidation() {
    } else {
     registration.classList.remove('error');
    }
+
+  // Checks is all values are truthy
+  if(nameValue && birthdayValue && genderValue && guestCountValue && registrationValue) {
+    const form = document.querySelector("#form");
+    console.log(form);
+
+    // Push All values into Array to loop over and display later
+    infoArray.push(nameValue);
+    infoArray.push(birthdayValue);
+    infoArray.push(genderValue);
+    infoArray.push(guestCountValue);
+    infoArray.push(registrationValue);
+
+    // Hides the form after submission 
+    form.classList.add('hiddenForm');
+    
+    const completedForm = document.getElementById("completed-form");
+    completedForm.style.display = "block";
+    console.log(completedForm);
+    
+  }
+
+  console.log(infoArray);
+  
 }
