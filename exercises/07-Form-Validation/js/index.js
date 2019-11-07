@@ -61,12 +61,23 @@ registration.addEventListener("input", e => {
 
 // *** Form Submittion & Validation ***
     
-const button = document.querySelector("[type=submit]");
-button.addEventListener("click", e => {
+const buttonSubmit = document.querySelector("[type=submit]");
+buttonSubmit.addEventListener("click", e => {
   e.preventDefault();
   formValidation();
   console.log(e.target);
 });
+
+// WHY DOES IT FLASH AND HOW ALL THE RED BORDER BOXES???
+const buttonClear = document.querySelector("[type=clear]");
+buttonClear.addEventListener("click", () => {
+  nameValue = '';
+  birthdayValue = '';
+  genderValue = 0;
+  guestCountValue = 0;
+  registrationValue = '';
+});
+
       
 function formValidation() {
   // const form = document.querySelector("#form");
@@ -126,12 +137,39 @@ function formValidation() {
     // Hides the form after submission 
     form.classList.add('hiddenForm');
     
+    // Shows box after submission
+    const box = document.getElementById("box");
+    box.style.display = "block";
+    
+    // Shows completedForm after submission
     const completedForm = document.getElementById("completed-form");
     completedForm.style.display = "block";
-    console.log(completedForm);
     
   }
 
   console.log(infoArray);
+  
+
+  // *** Was trying to map over the content and display it ***
+  // const userInfo = infoArray.map((e, i) => {
+  //   return `
+  //   <div key="${i}" style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: center;">
+  //       <h3>${e}</h3>
+  //     </div>
+  //   `;
+  // });
+  // document.getElementById('completed-form').innerHTML = userInfo;
+  // console.log(userInfo);
+
+  document.getElementById('completed-form').innerHTML = `
+  <div style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: flex-start; flex-direction: column;">
+     <span style="display: flex; flex-direction: row;"><h3>Name: </h3><h3 style="padding-left: 10px;">${infoArray[0]}</h3></span>
+     <span style="display: flex; flex-direction: row;"><h3>Birthday: </h3><h3 style="padding-left: 10px;">${infoArray[1]}</h3></span>
+     <span style="display: flex; flex-direction: row;"><h3>Gender: </h3><h3 style="padding-left: 10px;">${infoArray[2]}</h3></span>
+     <span style="display: flex; flex-direction: row;"><h3>Guest Count: </h3><h3 style="padding-left: 10px;">${infoArray[3]}</h3></span>
+     <span style="display: flex; flex-direction: row;"><h3>Registration Code: </h3><h3 style="padding-left: 10px;">${infoArray[4]}</h3></span>
+  </div>
+  `;
+  
   
 }

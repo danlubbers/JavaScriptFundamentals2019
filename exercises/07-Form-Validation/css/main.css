@@ -232,8 +232,17 @@ h6 {
   background: #57b846;
 }
 
+.btn--grey {
+  margin-left: 10px;
+  background: #999;
+}
+
 .btn--green:hover {
   background: #4dae3c;
+}
+
+.btn--grey:hover {
+  background: #777;
 }
 
 /* ==========================================================================
@@ -503,6 +512,8 @@ input {
   }
 }
 
-.completed-form {
+
+
+.box, .completed-form {
   display: none;
 }
