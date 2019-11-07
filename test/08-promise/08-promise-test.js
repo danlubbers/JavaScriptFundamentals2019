@@ -6,8 +6,9 @@ describe("Promise", () => {
   describe("getBooksApi", () => {
     it("should be a promise that will resolve into the response that is in the instructions", () => {
       const promise = getBooksApi();
+     
       expect(promise).to.be.an.instanceOf(Promise);
-      promise
+     return promise
         .then(response => {
           expect(response).to.be.an("object");
           expect(response).to.deep.equal({

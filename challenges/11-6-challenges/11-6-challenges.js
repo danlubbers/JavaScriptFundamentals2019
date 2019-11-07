@@ -35,6 +35,13 @@ buttonElement.addEventListener("click", () => {
    * ONLY CHANGE THE NEXT TWO LINES. Fix the bug so that callbacks are used correctly.
    * (You will still need to use the `waitUntilLater` and `getEmailText` functions.)
    */
-  const emailText = waitUntilLater(getEmailText, 500);
-  buttonElement.textContent = "Send to " + emailText;
+
+  waitUntilLater(() => {
+    const emailText = getEmailText();
+    buttonElement.textContent = "Send to " + emailText;
+  }, 500);
+
+  // Below was the code with the bug
+  // const emailText = waitUntilLater(getEmailText, 500);
+  // buttonElement.textContent = "Send to " + emailText;
 });

@@ -23,7 +23,7 @@
 let nameValue = '',
     birthdayValue = '',
     genderValue = 0,
-    guestCountValue = 0;
+    guestCountValue = 0,
     registrationValue = '';
 
 
@@ -36,21 +36,25 @@ name.addEventListener("input", e => {
 
 const birthday = document.querySelector("#birthday");
 birthday.addEventListener("input", e => {
+  birthdayValue = e.target.value;
   console.log('Birthday: ', e.target.value);
 });
 
 const gender = document.querySelector("#gender");
 gender.addEventListener("input", e => {
+  genderValue = e.target.value;
   console.log('Gender: ', e.target.value);
 });
 
 const guestcount = document.querySelector("#guestcount");
 guestcount.addEventListener("input", e => {
+  guestCountValue = e.target.value;
   console.log('Guestcount: ', e.target.value);
 });
 
 const registration = document.querySelector("#registration");
 registration.addEventListener("input", e => {
+  registrationValue = e.target.value;
   console.log('Registration: ', e.target.value);
 });
 
@@ -65,33 +69,42 @@ button.addEventListener("click", e => {
 });
       
 function formValidation() {
-  console.log(nameValue);
   // const form = document.querySelector("#form");
   // form.addEventListener("onsubmit", e => {
   //   console.log("Form Elements Submitted: ", e.target.elements);
   // });
   // console.log(document.form.name.value);
-  // If there is no value, then add class error to the input, which should show a red border box
+
+
+  // If there is no value, then add class error to the input, which shows a red border box to indicate the field 'must' be filled out before submission will be accepted 
   // NAME
-  if(!document.form.name.value) {
+  if(!nameValue) {
     name.classList.add('error');
-    if(name.classList.contains('error')) {
-      // I know it's adding the error class because this is logging to the console
-      console.error("has class Error");
-    }
   } else {
    name.classList.remove('error');
   }
 
   // BIRTHDAY  
-  if(!document.form.birthday.value) {
+  if(!birthdayValue) {
    birthday.classList.add('error');
   } else {
    birthday.classList.remove('error');
   }
 
+  if(!genderValue) {
+    gender.classList.add('error');
+  } else {
+    gender.classList.remove('error');
+  }
+  
+  if(!guestCountValue) {
+    guestcount.classList.add('error');
+  } else {
+    guestcount.classList.remove('error');
+  }
+
   // Registration
-  if(!document.form.registration.value) {
+  if(!registrationValue) {
     registration.classList.add('error');
    } else {
     registration.classList.remove('error');
