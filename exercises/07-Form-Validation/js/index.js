@@ -19,7 +19,7 @@
 *  2) You can edit this form however you see fit as the engineer to achieve your goals. (i.e add ids or additional classes if needed)
 */
 
-// *** Variables ***
+// *** State ***
 let nameValue = '',
     birthdayValue = '',
     genderValue = 0,
@@ -68,71 +68,81 @@ buttonSubmit.addEventListener("click", e => {
   console.log(e.target);
 });
 
-// WHY DOES IT FLASH WITH ALL THE RED BORDER BOXES???
-// The flash bug was due to the onsubmit = return formValidation() in the html file
-// I deleted that bit of code so it doesn't automatically invoke formValidation()
-const buttonClear = document.querySelector("[type=clear]");
-buttonClear.addEventListener("click", () => {
-
-  nameValue = '';
-  birthdayValue = '';
-  genderValue = 0;
-  guestCountValue = 0;
-  registrationValue = '';
-
-  document.getElementById('name', 'birthday', 'registration').innerHTML = '';
-  document.getElementById('gender', 'guestcount').innerHTML = 0;
-
-console.log(name.value);
-
-});
-
+// Form Reset function passed to the Clear button in html file
+function formReset() {
+  document.getElementById('form').reset();
+}
       
 function formValidation() {
-  // Array to collect User Input
+  // Collect User Input
   // let infoArray = [];
   let infoObj = {};
 
   // If there is no value, then add class error to the input, which shows a red border box to indicate the field 'must' be filled out before submission will be accepted 
   // NAME
-  if(!nameValue) {
-    name.classList.add('error');
-    name.placeholder = "Please submit a Name...";
-    console.log(name);
+  // if(!nameValue) {
+  //   name.classList.add('error');
+  //   name.placeholder = "Please submit a Name...";
+  //   console.log(name);
     
-  } else {
-    name.classList.remove('error');
-  }
+  // } else {
+  //   name.classList.remove('error');
+  // }
   
-  // BIRTHDAY  
-  if(!birthdayValue) {
-    birthday.classList.add('error');
-    birthday.placeholder = "Please submit a Birthday...";
-  } else {
-    birthday.classList.remove('error');
-  }
+  // // BIRTHDAY  
+  // if(!birthdayValue) {
+  //   birthday.classList.add('error');
+  //   birthday.placeholder = "Please submit a Birthday...";
+  // } else {
+  //   birthday.classList.remove('error');
+  // }
   
-  if(!genderValue) {
-    gender.classList.add('error');
-  } else {
-    gender.classList.remove('error');
-  }
+  // if(!genderValue) {
+  //   gender.classList.add('error');
+  // } else {
+  //   gender.classList.remove('error');
+  // }
   
-  if(!guestCountValue) {
-    guestcount.classList.add('error');
-  } else {
-    guestcount.classList.remove('error');
-  }
+  // if(!guestCountValue) {
+  //   guestcount.classList.add('error');
+  // } else {
+  //   guestcount.classList.remove('error');
+  // }
   
-  // Registration
-  if(!registrationValue) {
-    registration.classList.add('error');
-    registration.placeholder = "Please submit a Registration Code...";
-   } else {
-    registration.classList.remove('error');
-   }
+  // // Registration
+  // if(!registrationValue) {
+  //   registration.classList.add('error');
+  //   registration.placeholder = "Please submit a Birthday...";
+  //  } else {
+  //   registration.classList.remove('error');
+  //  }
 
-  // Checks is all values are truthy
+  // *** Refactored Using forEach to loop over content instead of a bunch of if/else statements I used above
+  // Loop over all inputs
+  const inputs = document.querySelectorAll('input');
+    inputs.forEach(e => {
+      if(!e.value) {
+        e.classList.add('error');
+        if(e.placeholder === 'NAME') e.placeholder = 'Please submit a Name...';
+        if(e.placeholder === 'BIRTHDATE') e.placeholder = 'Please submit a Birthdate...';
+        if(e.placeholder === 'REGISTRATION CODE') e.placeholder = 'Please submit a Registration Code...';
+      } else {
+        e.classList.remove('error');
+      }
+  });
+
+  // Loop over all selected dropdowns
+  const select = document.querySelectorAll('select');
+    select.forEach(e => {
+      if(e.value === 'GENDER' || e.value === 'How many Guest') {
+        e.classList.add('error');
+      } else {
+        e.classList.remove('error');
+      }
+  });
+
+
+  // Checks if all values are truthy
   if(nameValue && birthdayValue && genderValue && guestCountValue && registrationValue) {
     const form = document.querySelector("#form");
     console.log(form);
@@ -166,9 +176,8 @@ function formValidation() {
     
   }
 
-  // console.log(infoArray);
 
-  // *** Was trying to map over the content and display it ***
+  // *** Was trying to map over the content and display it *** Second Method, works but didn't have access to keys, only Values
   // const userInfo = infoArray.map((e, i) => {
   //   return `
   //   <div key="${i}" style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: center;">
@@ -179,11 +188,15 @@ function formValidation() {
   // document.getElementById('completed-form').innerHTML = userInfo;
   // console.log(userInfo);
 
+
+
+  // *** Object to Array then mapped to Display *** Third Method so I can loop over Keys and Values
   // Turn Object into an array to loop over it
   let infoArray = Object.entries(infoObj);
   console.log(infoArray);
   // Looping over info to display user input on page after submission 
   const userInfo = infoArray.map((e, i) => {
+    console.log('INFO ARRAY: ', e);
     return `
     <div key="${i}" style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: center;">
         <h4>${e[0]}: ${e[1]}</h4>
@@ -196,7 +209,7 @@ function formValidation() {
 
 
 
-  // Ended up statically showing User Information
+  // *** Statically showing User Information *** FIRST Method, works but is static
   // document.getElementById('completed-form').innerHTML = `
   // <div style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: flex-start; flex-direction: column;">
   //    <span style="display: flex; flex-direction: row;"><h3>Name: </h3><h3 style="padding-left: 10px;">${infoArray[0]}</h3></span>
@@ -205,5 +218,5 @@ function formValidation() {
   //    <span style="display: flex; flex-direction: row;"><h3>Guest Count: </h3><h3 style="padding-left: 10px;">${infoArray[3]}</h3></span>
   //    <span style="display: flex; flex-direction: row;"><h3>Registration Code: </h3><h3 style="padding-left: 10px;">${infoArray[4]}</h3></span>
   // </div>
-  // `;
+  // // `;
 }
