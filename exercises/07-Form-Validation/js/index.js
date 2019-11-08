@@ -68,41 +68,50 @@ buttonSubmit.addEventListener("click", e => {
   console.log(e.target);
 });
 
-// WHY DOES IT FLASH AND HOW ALL THE RED BORDER BOXES???
+// WHY DOES IT FLASH WITH ALL THE RED BORDER BOXES???
+// The flash bug was due to the onsubmit = return formValidation() in the html file
+// I deleted that bit of code so it doesn't automatically invoke formValidation()
 const buttonClear = document.querySelector("[type=clear]");
 buttonClear.addEventListener("click", () => {
+
   nameValue = '';
   birthdayValue = '';
   genderValue = 0;
   guestCountValue = 0;
   registrationValue = '';
+
+  document.getElementById('name', 'birthday', 'registration').innerHTML = '';
+  document.getElementById('gender', 'guestcount').innerHTML = 0;
+
+console.log(name.value);
+
 });
 
       
 function formValidation() {
-  // const form = document.querySelector("#form");
-  // form.addEventListener("onsubmit", e => {
-  //   console.log("Form Elements Submitted: ", e.target.elements);
-  // });
-  // console.log(document.form.name.value);
-
-  let infoArray = [];
+  // Array to collect User Input
+  // let infoArray = [];
+  let infoObj = {};
 
   // If there is no value, then add class error to the input, which shows a red border box to indicate the field 'must' be filled out before submission will be accepted 
   // NAME
   if(!nameValue) {
     name.classList.add('error');
+    name.placeholder = "Please submit a Name...";
+    console.log(name);
+    
   } else {
-   name.classList.remove('error');
+    name.classList.remove('error');
   }
-
+  
   // BIRTHDAY  
   if(!birthdayValue) {
-   birthday.classList.add('error');
+    birthday.classList.add('error');
+    birthday.placeholder = "Please submit a Birthday...";
   } else {
-   birthday.classList.remove('error');
+    birthday.classList.remove('error');
   }
-
+  
   if(!genderValue) {
     gender.classList.add('error');
   } else {
@@ -114,10 +123,11 @@ function formValidation() {
   } else {
     guestcount.classList.remove('error');
   }
-
+  
   // Registration
   if(!registrationValue) {
     registration.classList.add('error');
+    registration.placeholder = "Please submit a Registration Code...";
    } else {
     registration.classList.remove('error');
    }
@@ -128,16 +138,25 @@ function formValidation() {
     console.log(form);
 
     // Push All values into Array to loop over and display later
-    infoArray.push(nameValue);
-    infoArray.push(birthdayValue);
-    infoArray.push(genderValue);
-    infoArray.push(guestCountValue);
-    infoArray.push(registrationValue);
+    // infoArray.push(nameValue);
+    // infoArray.push(birthdayValue);
+    // infoArray.push(genderValue);
+    // infoArray.push(guestCountValue);
+    // infoArray.push(registrationValue);
+
+    // Using Object instead with Key/value pairs so when I loop over it I can use the keys as well
+    infoObj.Name = nameValue;
+    infoObj.Birthday = birthdayValue;
+    infoObj.Gender = genderValue;
+    infoObj['Guest Count'] = guestCountValue;
+    infoObj.Registration = registrationValue;
+    console.log(infoObj);
+    
 
     // Hides the form after submission 
     form.classList.add('hiddenForm');
     
-    // Shows box after submission
+    // Shows div box after submission
     const box = document.getElementById("box");
     box.style.display = "block";
     
@@ -147,8 +166,7 @@ function formValidation() {
     
   }
 
-  console.log(infoArray);
-  
+  // console.log(infoArray);
 
   // *** Was trying to map over the content and display it ***
   // const userInfo = infoArray.map((e, i) => {
@@ -161,15 +179,31 @@ function formValidation() {
   // document.getElementById('completed-form').innerHTML = userInfo;
   // console.log(userInfo);
 
-  document.getElementById('completed-form').innerHTML = `
-  <div style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: flex-start; flex-direction: column;">
-     <span style="display: flex; flex-direction: row;"><h3>Name: </h3><h3 style="padding-left: 10px;">${infoArray[0]}</h3></span>
-     <span style="display: flex; flex-direction: row;"><h3>Birthday: </h3><h3 style="padding-left: 10px;">${infoArray[1]}</h3></span>
-     <span style="display: flex; flex-direction: row;"><h3>Gender: </h3><h3 style="padding-left: 10px;">${infoArray[2]}</h3></span>
-     <span style="display: flex; flex-direction: row;"><h3>Guest Count: </h3><h3 style="padding-left: 10px;">${infoArray[3]}</h3></span>
-     <span style="display: flex; flex-direction: row;"><h3>Registration Code: </h3><h3 style="padding-left: 10px;">${infoArray[4]}</h3></span>
-  </div>
-  `;
-  
-  
+  // Turn Object into an array to loop over it
+  let infoArray = Object.entries(infoObj);
+  console.log(infoArray);
+  // Looping over info to display user input on page after submission 
+  const userInfo = infoArray.map((e, i) => {
+    return `
+    <div key="${i}" style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: center;">
+        <h4>${e[0]}: ${e[1]}</h4>
+      </div>
+    `;
+  });
+  document.getElementById('completed-form').innerHTML = userInfo;
+  console.log(userInfo);
+
+
+
+
+  // Ended up statically showing User Information
+  // document.getElementById('completed-form').innerHTML = `
+  // <div style="padding-left: 25px; display: flex; justify-content: flex-start; align-items: flex-start; flex-direction: column;">
+  //    <span style="display: flex; flex-direction: row;"><h3>Name: </h3><h3 style="padding-left: 10px;">${infoArray[0]}</h3></span>
+  //    <span style="display: flex; flex-direction: row;"><h3>Birthday: </h3><h3 style="padding-left: 10px;">${infoArray[1]}</h3></span>
+  //    <span style="display: flex; flex-direction: row;"><h3>Gender: </h3><h3 style="padding-left: 10px;">${infoArray[2]}</h3></span>
+  //    <span style="display: flex; flex-direction: row;"><h3>Guest Count: </h3><h3 style="padding-left: 10px;">${infoArray[3]}</h3></span>
+  //    <span style="display: flex; flex-direction: row;"><h3>Registration Code: </h3><h3 style="padding-left: 10px;">${infoArray[4]}</h3></span>
+  // </div>
+  // `;
 }
