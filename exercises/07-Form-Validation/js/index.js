@@ -19,42 +19,6 @@
 *  2) You can edit this form however you see fit as the engineer to achieve your goals. (i.e add ids or additional classes if needed)
 */
 
-// *** State ***
-let infoObj = {},
-    nameValue = '',
-    birthdayValue = '',
-    genderValue = 0,
-    guestCountValue = 0,
-    registrationValue = '';
-
-
-// *** INPUT FIELDS ***
-const name = document.querySelector("#name");
-name.addEventListener("input", e => {
-  nameValue = e.target.value;
-});
-
-const birthday = document.querySelector("#birthday");
-birthday.addEventListener("input", e => {
-  birthdayValue = e.target.value;
-});
-
-const gender = document.querySelector("#gender");
-gender.addEventListener("input", e => {
-  genderValue = e.target.value;
-});
-
-const guestcount = document.querySelector("#guestcount");
-guestcount.addEventListener("input", e => {
-  guestCountValue = e.target.value;
-});
-
-const registration = document.querySelector("#registration");
-registration.addEventListener("input", e => {
-  registrationValue = e.target.value;
-});
-
-
 // *** Form Submittion & Validation ***
 // Form Submission button
 const buttonSubmit = document.querySelector("[type=submit]");
@@ -63,12 +27,28 @@ buttonSubmit.addEventListener("click", e => {
   formValidation();
 });
 
-// Form Reset function passed to the Clear button in html file
+// BONUS POINTS #2: Form Reset function passed to the Clear button in html file
 function formReset() {
   document.getElementById('form').reset();
 }
       
 function formValidation() {
+  // *** State ***
+  let infoObj = {},
+      nameValue = '',
+      birthdayValue = '',
+      genderValue = 0,
+      guestCountValue = 0,
+      registrationValue = '';
+
+  // *** INPUT FIELDS ***
+  const form = document.querySelector('#form');
+    nameValue = form.elements.name.value;
+    birthdayValue = form.elements.birthday.value;
+    genderValue = form.elements.gender.value;
+    guestCountValue = form.elements.guestcount.value;
+    registrationValue = form.elements.registration.value;
+
   // If there is no value, then add class error to the input, which shows a red border box to indicate the field 'must' be filled out before submission will be accepted 
   // *** Refactored Using forEach to loop over content instead of a bunch of if/else statements
   // Loop over all inputs
@@ -76,12 +56,13 @@ function formValidation() {
     inputs.forEach(e => {
       if(!e.value) {
         e.classList.add('error');
+        // BONUS POINTS #1
         if(e.placeholder === 'NAME') e.placeholder = 'Please submit a Name...';
         if(e.placeholder === 'BIRTHDATE') e.placeholder = 'Please submit a Birthdate...';
         if(e.placeholder === 'REGISTRATION CODE') e.placeholder = 'Please submit a Registration Code...';
       } else {
         e.classList.remove('error');
-      }
+      } 
   });
 
   // Loop over all selected dropdowns
