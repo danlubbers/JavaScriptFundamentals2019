@@ -16,3 +16,13 @@
  *
  */
 
+ const button = document.querySelector('button');
+ button.addEventListener('click', () => {
+     fetch('https://dog.ceo/api/breeds/image/random')
+        .then(res => res.json())
+        .then(res => {
+           const image = document.querySelector('#image');
+           image.src = res.message;
+          })
+        .catch(err => console.error(err));
+ });
