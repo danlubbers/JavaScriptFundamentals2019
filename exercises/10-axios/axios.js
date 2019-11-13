@@ -15,3 +15,40 @@
  *
  * Use the AXIOS library to make AJAX requests.
  */
+
+const dropdown = document.querySelector('#dropdown');
+
+  axios.get(`https://rickandmortyapi.com/api/character/`)
+    .then(res => {
+      const characters = res.data.results;
+        characters.map(character => {
+          const newCharacter = document.createElement('option');
+      
+            newCharacter.textContent = character.name;
+            newCharacter.value = character.id;      
+            dropdown.appendChild(newCharacter);   
+    });
+  })
+    .catch(err => console.error(err));
+  
+// Selecting the character off the dropdown 
+dropdown.addEventListener('input', character => {
+  const id = character.target.value;
+
+  axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+    .then(res => {
+      const image = document.querySelector('#get-schwifty');
+        image.src = res.data.image;
+
+      const title = document.querySelector('#title-head');
+        title.textContent = res.data.name;
+
+      const photoCaption = document.querySelector('#photo-caption');
+        photoCaption.textContent = res.data.origin.name;
+        
+
+      });
+  })
+    .catch(err => console.error(err));
+    
+  
