@@ -47,8 +47,9 @@ dropdown.addEventListener('input', character => {
         photoCaption.textContent = res.data.origin.name;
         
 
-      });
-  })
-    .catch(err => console.error(err));
+      })
+      .catch(err => console.error(err));
+  });
+    
     
   
