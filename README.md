@@ -35,7 +35,7 @@ Follow the guide [Creating a pull request from a fork](https://help.github.com/a
 ## Resources
 
 - [Syllabus](https://docs.google.com/document/d/1x3Qeln21_8PWtiAf3aFKyUXlxgPz_TpDNgIy_yePPJQ/edit?usp=sharing)
-- Projects: [Project 1: Hangman](docs/Project1Description.md)
+- Projects: [Project 1: Hangman](docs/Project1Description.md) | [Final Project](docs/FinalProjectDescription.md)
 - [Slides](https://slides.com/accjavascript/decks/2019-javascript-fundamentals)
 - [Code Sandboxes](https://codesandbox.io/u/matinaspatsos)
 - Installation Guide: [Mac](docs/InstallationGuideMac.md) | [Windows](docs/InstallationGuideWindows.md)

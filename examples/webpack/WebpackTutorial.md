@@ -4,7 +4,7 @@ Press `command+shift+v` on Mac or `ctrl+shift+v` on Windows to preview this in V
 
 ## Setting up the Project
 
-Create a new folder for this project and open it in Visual Studio Code. Let's create a folders and files like this:
+Create a new folder for this project and open it in Visual Studio Code. Then create more folder and files within this project like this:
 
 ```
 > public
@@ -78,11 +78,11 @@ Open up your _package.json_ file again and notice that this below was automatica
   }
 ```
 
-In order to run Webpack, we will need to create an npm script in the _package.json_ file like this:
+In order to run Webpack, we are going to create an npm script in the _package.json_ file like this:
 
 ```json
   "scripts": {
-    "start": "webpack"
+    "build": "webpack"
   },
 ```
 
@@ -114,9 +114,10 @@ Notice that the script you just ran created a new file _main.js_ inside a new fo
 ```
 > dist
   main.js
+> public
+  index.html
 > src
   index.js
-index.html
 ```
 
 Open the _main.js_ file. You should see a lot off additional code with no whitespace. This is a production build. (We will go over this later).
@@ -137,7 +138,7 @@ Open your _index.html_ file in your browser of choice and open the _Developer To
 
 ![It works!](../../docs/img/webpack-starting-alert.png)
 
-This requires that we organize our file structure a certain way and we must name our files _index.js_ for the input file and _main.js_ for output file like this:
+Right now, we must organize our file structure in a certain way. We must have an _index.js_ for the input file and _main.js_ for output file like this:
 
 ```
 > dist
