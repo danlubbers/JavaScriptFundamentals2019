@@ -17,14 +17,28 @@
 </head>
 
 <div id="main">
-  <h1>Your Weather For Today</h1>
-  <div class="visual-only" aria-hidden="true">
-    <div id="quick-view">
-      <div id="weather-icons">
-        <i id='temp' class="wi"></i>
-        <i id='fc'class="wi">F</i>
+  <h1>The weather in: </h1>
+  <div class='region-container'>
+    <span id='city' class="wi"></span>, <span id='state' class="wi"></span>
+  </div>
+  <img id='icon' class='wi'>
+  <h4 id='description' class='wi'></h4>
+  <div class='sarcasm-container'>
+    <h3 id='weather-sarcasm'></h3>
+  </div>
+    <div class="visual-only" aria-hidden="true">
+      <div id="quick-view">
+        <div id="weather-icons">
+          <span id='temp' class="wi"></span>
+          <span id='fc'class="wi">F</span>
+          <h5 id='pressure' class='wi'></h5>
+          <h5 id='humidity' class='wi'></h5>
+        </div>
       </div>
     </div>
-    <button>F / C</button>
-  </div>
+    <span>
+      <button id='tempBtn'>F / C</button>
+      <button id='pressureBtn'>IN / MB</button>
+    </span>
+
 </div>
