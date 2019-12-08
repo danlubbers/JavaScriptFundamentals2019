@@ -1,6 +1,6 @@
 # Final Project Description
 
-**Due Date: December 20, 2019 11:59pm**
+**Due Date: January 10, 2019 11:59pm**
 
 You will be working in a group of two or three people. Everyone must write for code for this project. What the project will be is up to your group, but you must meet a list of technical requirements in order to pass. In January, you will be showing off your project to potential employers. You are required to attend.
 
@@ -13,7 +13,7 @@ You must meet these requirements in order to pass.
 - You will need at least one API that will return images somewhere within the results. You must display images on the page from this API call.
 - You must store content in simple data structures (arrays, objects and sets).
 - Your code must contain at least one high order function with arrays (e.g. _Array.forEach_, _Array.map_, _Array.find_, _Array.filter_ and _Array.reduce_).
-- Your code should not have any Cross Site Scripting (XSS) vulnerabilities. If you convert a string into HTML at any point, you must use a [https://www.npmjs.com/search?q=xss](library) to sanitize the HTML.
+- Your code should not have any Cross Site Scripting (XSS) vulnerabilities. If you convert a string into HTML at any point, you must use a [library](https://www.npmjs.com/search?q=xss) to sanitize the HTML.
 - You must have at least one arrow function (but we encourage you to use more than that).
 - It will be an **automatic failure** if you use _var_.
 - You must show and hide DOM elements on the screen.
@@ -45,7 +45,26 @@ https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?te
 
 [You can read more about CORS here](https://www.codecademy.com/articles/what-is-cors).
 
-## Project Suggestions
+### Update: Writing Your Own APIs
+
+You are permitted to write your own APIs (or back-end), but if you opt to do this, we are requiring you to complete a reviewal process. You must submit a formal document to Jamal and Matina by **December 18th**. Your document must contain:
+- Working examples of code that prove you have written your own API before. This does not have to be related to this project.
+- If you are writing a back-end, the language you will be using, as well as a list of expected packages and any other things that must be installed.
+- Installation instructions (this can be brief).
+- A description of how or where you are going to get your data from.
+- Specifications on your APIs e.g. URLs, HTTP methods, example request bodies and example request responses with HTTP status codes.
+
+If Jamal and Matina deny your specification, you must pivot and use a third-party API.
+
+Your APIs (and back-end) must meet the following conditions:
+- You cannot use private resources like your web server on AWS or another host, your company’s web server, or database in the cloud. (You are permitted to write wrappers around public APIs and scrap popular websites for data). The reason for this is because if these resources go down, we do not want the other members in the group to suffer because they cannot show off their portfolio piece.
+- It must be self contained. That means that whatever code you write for your back-end to run must go in the project’s Github repository. You are allowed to mock data as long as you also include it in your Github repository.
+- It should not require numerous installations and it should not take more than five minutes to get up and going. Jamal and Matina need to be able to grade your project in a timely manner.
+- It must work on Mac OSX and Windows. (Also, possible Docker, but the Jury is still out for that).
+
+For those of you who want to write a back-end with Node.js, please note that we will not look at your back-end code, since it is out of scope. This means that **only your front-end code will count towards whether or not you pass.**
+
+## Project Ideas
 
 You are free to come with up with your own ideas and use any APIs you would like. However, here are two different ideas to get started.
 
@@ -148,4 +167,4 @@ While you will not fail if you do not meet these quality requirements, we encour
 
 ## Graduation
 
-You will be demonstrating your project on January 16th during the graduation ceremony. All members are required to be there. Keep in mind that potential employers will attend graduation, so put your best foot forward.
+You will be demonstrating your project on **January 16th** during the graduation ceremony. All members are required to be there. Keep in mind that potential employers will attend graduation, so put your best foot forward.
