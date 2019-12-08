@@ -284,7 +284,35 @@ Now run `npm run build`. If you are on Windows, open _index.html_ in Internet Ex
 
 ## An Introduction to ES6 Modules
 
-TODO
+Create a file called _greet.js_ inside the _src_ folder:
+
+```
+> public
+  > assets
+    main.js  (output)
+  index.html
+> src
+  greet.js
+  index.js  (input)
+```
+
+So let's move the refactor so that the _greet()_ function is in _greet.js_. You will then use ES6 modules to export the greet function, so that it can be shared between other files.
+
+```javascript
+const greet = () => {
+  alert("It works!");
+};
+
+export { greet };
+```
+
+And now we need to update _index.js_ so that it imports the function _greet()_.
+
+```javascript
+import { greet } from "./greet";
+
+greet();
+```
 
 ## Loading and Building SASS with Webpack
 
@@ -298,6 +326,8 @@ $brand-color: #4aa65e;
 html,
 body {
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -324,11 +354,7 @@ Inside of _src/input.js_, you are going to import the SASS file like this:
 
 ```javascript
 import "./style.scss";
-
-// Internet Explorer does not support constants or arrow functions
-const greet = () => {
-  alert("It works!");
-};
+import { greet } from "./greet";
 
 greet();
 ```
@@ -352,12 +378,6 @@ Now add this to the rules section of your _.webpack.config.js_ so that Webpack w
     ]
   },
 ```
-
-## Creating a Production Build
-
-TODO
-
-TODO source maps
 
 # Resources
 
