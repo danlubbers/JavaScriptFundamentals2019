@@ -55,17 +55,33 @@ const studentGrades = [
 
 const TeacherGradeBook = (() => {
   
-  const average = studentGrades.reduce((acc, curr) => acc.grades + curr.grades, 0) ;
-  console.log(average);
+  const averages = studentGrades.map(student => {
+    // console.log(student.firstName);
+    return {
+      firstName: student.firstName,
+      average: Math.floor(student.grades.reduce((acc,curr)=> {
+        return acc + curr;
+     },0) / student.grades.length)
+    };
+  });
   
+  console.table(averages);
   
-
   return {
-    // getFailingStudents:() => {
-    //   averages.filter(())
-    // }
+    getFailingStudents:() => {
+      return averages.filter(e => e.average < 65 && e.firstName);
+    },
+    
+    getPassingStudents:() => {
+      return averages.filter(e => e.average > 65 && e.firstName);
+
+    }
   };
 })();
+
+console.log(TeacherGradeBook.getFailingStudents());
+console.log(TeacherGradeBook.getPassingStudents());
+
 
 module.exports = {
   TeacherGradeBook
