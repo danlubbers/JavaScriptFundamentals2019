@@ -1,0 +1,16 @@
+{
+  "name": "14-unit-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "unit-testing-test.js",
+  "scripts": {
+    "test" :"mocha ./*-test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}

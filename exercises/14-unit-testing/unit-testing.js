@@ -24,6 +24,7 @@ const subtract = (num1, num2) => num1 - num2;
  */
 const isEvenNumber = num => num % 2 === 0;
 
+
 /**
  * Loops through a multidimensional array of object literals
  * and returns a new array where only the adults are included
