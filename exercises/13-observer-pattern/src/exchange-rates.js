@@ -14,10 +14,14 @@ const currencies = Object.keys(exchangeRates);
  * Using the exchange rate, converts currency 1 to currency 2
  * @return {number|string}
  */
-const convertCurrency = (currency1, currency2, amount) => {
-  if (!Number.isInteger(parseInt(amount)) || !currency1 || !currency2)
+const convertCurrency = (currencyThatChanged, otherCurrency, amount) => {
+  if (
+    !Number.isInteger(parseInt(amount)) ||
+    !currencyThatChanged ||
+    !otherCurrency
+  )
     return "";
-  const exchangeRate = exchangeRates[currency2][currency1];
+  const exchangeRate = exchangeRates[otherCurrency][currencyThatChanged];
   return (amount * exchangeRate).toFixed(4);
 };
 

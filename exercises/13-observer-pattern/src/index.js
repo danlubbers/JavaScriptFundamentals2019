@@ -35,18 +35,39 @@ const updateAmountRight = () => {
 };
 leftObserver.subscribe(updateAmountRight);
 
+const rightObserver = Observable();
+const updateAmountLeft = () => {
+  amountLeft = convertCurrency(currencyRight, currencyLeft, amountRight);
+  amountTextboxLeft.value = amountLeft;
+};
+rightObserver.subscribe(updateAmountLeft);
+
 /**
  * I've added event listeners to the left side of the page.
  * You will need to add event listeners to the right side.
  */
 currencyDropdownLeft.addEventListener("change", e => {
   currencyLeft = e.target.value;
-  /* Complete me */
+  leftObserver.notify(currencyLeft);
+  
 });
 
 amountTextboxLeft.addEventListener("input", e => {
   amountLeft = e.target.value;
-  /* Complete me */
+  leftObserver.notify(currencyLeft);
+  
+});
+
+currencyDropdownRight.addEventListener("change", e => {
+  currencyRight = e.target.value;
+  rightObserver.notify(currencyRight);
+  
+});
+
+amountTextboxRight.addEventListener("input", e => {
+  amountRight = e.target.value;
+  rightObserver.notify(currencyRight);
+  
 });
 
 /**
